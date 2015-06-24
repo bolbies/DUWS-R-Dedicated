@@ -1,0 +1,218 @@
+OnLoadMission = "A procedurally generated campaign where you earn resources, execute missions and lead the BLUFOR forces to capture the island and win the war.";
+onLoadName = "Dynamic Universal WAR System (DUWS) Modified v1.3";
+dev = "dev";
+author = "Kibot / Modified by BOLBIES - Altis";
+//briefingName = "briefingname";
+overviewText = "A procedurally generated campaign where you earn resources, execute missions and lead the BLUFOR forces to capture the island and win the war. Play the way you want: be a spec ops, a squad leader or control a whole army, the choice is yours. (In the future, the DUWS will feature persistent elements that allow you to play a single campaign throughout multiple islands.)";
+//overviewPicture = "\a3\Missions_F_Beta\data\img\showcase_commanding_I_overview_ca.paa";
+overviewPicture = "rtipic.paa";
+LoadScreen = "rtipic.paa";
+
+class Header
+{
+ gameType = COOP;            //DM, Team, Coop, ...
+ minPlayers = 1;             //min # of players the mission supports
+ maxPlayers = 12;            //Max # of players the mission supports
+};
+
+respawn = 3;
+respawnDelay = 16;
+disabledAI = 1;
+allowFunctionsLog = 0;
+
+#include "debriefing.hpp"
+#include "dialog\defines.hpp"
+#include "dialog\startup\startup.hpp"
+#include "dialog\squad\squadmng.hpp"
+#include "dialog\squad\rename\renamesquad.hpp"
+#include "dialog\request.hpp"
+#include "dialog\request_fob.hpp"
+#include "dialog\fob\fobmanager.hpp"
+#include "dialog\info\info.hpp"
+#include "dialog\info\reset\reset.hpp"
+#include "locations.hpp"
+#include "support\support.hpp"
+#include "hints.hpp"
+#include "dialog\startup\hq_placement\placement.hpp"
+#include "sounds\sounds.hpp"
+#include "dialog\operative\identities.hpp"
+#include "dialog\operative\operative.hpp"
+#include "params.hpp"
+#include "duws_revive\gui\duws_revive.hpp"
+#include "missions\missions\roulette\bomb\keypad_defuse\explosivePad.hpp"
+// #include "ATM_airdrop\dialog.hpp"
+
+class CfgMusic
+{
+	tracks[]={nuke, nuke1s, nuke2s, radzoneb, nblast, incoming, impact};
+
+	class nuke
+	{
+		name = "";
+		sound[] = {"support\nuke\nuke.ogg", db+0, 1.0};
+	};
+    class nuke1s
+	{
+		name = "nuke1s"; // Name for mission editor
+		sound[] = {"lk\sound\nuke1s.wss", db + 100, 1.0};
+		titles[] = {0, ""};
+	};
+	class nuke2s
+	{
+		name = "nuke2s"; // Name for mission editor
+		sound[] = {"lk\sound\nuke2s.wss", db + 10, 1.0};
+		titles[] = {0, ""};
+	};
+	class radzoneb
+	{
+		name = "radzoneb"; // Name for mission editor
+		sound[] = {\lk\sound\radiation.ogg, db - 3, 1.0};
+		titles[] = {0, ""};
+	};
+	class incoming
+	{
+		name = "incoming"; // Name for mission editor
+		sound[] = {\lk\sound\incoming.ogg, db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class nblast
+	{
+		name = "nblast"; // Name for mission editor
+		sound[] = {\lk\sound\tom.wss, db + 2, 1.0};
+		titles[] = {0, ""};
+	};
+	class impactMetalHardClose
+	{
+		name = "impactMetalHardClose"; // Name for mission editor
+		sound[] = {\lk\sound\impact_metal_hard.ogg, db + 6, 0.8};
+		titles[] = {0, ""};
+	};
+	class impactMetalHardStandard
+	{
+		name = "impactMetalHardStandard"; // Name for mission editor
+		sound[] = {\lk\sound\impact_metal_hard.ogg, db - 2, 0.6};
+		titles[] = {0, ""};
+	};
+	class impactMetalHardFar
+	{
+		name = "impactMetalHardFar"; // Name for mission editor
+		sound[] = {\lk\sound\impact_metal_hard.ogg, db - 10, 0.4};
+		titles[] = {0, ""};
+	};
+	class impactBodyHardClose
+	{
+		name = "impactBodyHardClose"; // Name for mission editor
+		sound[] = {\lk\sound\impact_body_hard.ogg, db + 5, 0.8};
+		titles[] = {0, ""};
+	};
+	class impactBodyHardStandard
+	{
+		name = "impactBodyHardStandard"; // Name for mission editor
+		sound[] = {\lk\sound\impact_body_hard.ogg, db - 2, 0.9};
+		titles[] = {0, ""};
+	};
+	class impactBodyHardFar
+	{
+		name = "impactBodyHardFar"; // Name for mission editor
+		sound[] = {\lk\sound\impact_body_hard.ogg, db - 10, 1.0};
+		titles[] = {0, ""};
+	};
+	class impactMetalSoftClose
+	{
+		name = "impactMetalSoftClose"; // Name for mission editor
+		sound[] = {\lk\sound\impact_metal_soft.ogg, db + 10, 0.8};
+		titles[] = {0, ""};
+	};
+	class impactMetalSoftStandard
+	{
+		name = "impactMetalSoftStandard"; // Name for mission editor
+		sound[] = {\lk\sound\impact_metal_soft.ogg, db + 0, 0.7};
+		titles[] = {0, ""};
+	};
+	class impactMetalSoftFar
+	{
+		name = "impactMetalSoftFar"; // Name for mission editor
+		sound[] = {\lk\sound\impact_metal_soft.ogg, db - 10, 0.6};
+		titles[] = {0, ""};
+	};
+	class impactBodySoftClose
+	{
+		name = "impactBodySoftClose"; // Name for mission editor
+		sound[] = {\lk\sound\impact_body_soft.ogg, db + 10, 1.0};
+		titles[] = {0, ""};
+	};
+	class impactBodySoftStandard
+	{
+		name = "impactBodySoftStandard"; // Name for mission editor
+		sound[] = {\lk\sound\impact_body_soft.ogg, db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class impactBodySoftFar
+	{
+		name = "impactBodySoftFar"; // Name for mission editor
+		sound[] = {\lk\sound\impact_body_soft.ogg, db - 10, 1.0};
+		titles[] = {0, ""};
+	};
+	class rhumble
+	{
+		name = "rhumble"; // Name for mission editor
+		sound[] = {\lk\sound\rhumble.ogg, db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class interiorTurbolanceClose
+	{
+		name = "interiorTurbolanceClose"; // Name for mission editor
+		sound[] = {\lk\sound\interior_turbolanceClose.ogg, db + 0, 1.0};
+		titles[] = {0, ""};
+	};
+	class interiorTurbolanceStandard
+	{
+		name = "interiorTurbolanceStandard"; // Name for mission editor
+		sound[] = {\lk\sound\interior_turbolanceStandard.ogg, db - 5, 1.0};
+		titles[] = {0, ""};
+	};
+	class interiorTurbolanceFar
+	{
+		name = "interiorTurbolanceFar"; // Name for mission editor
+		sound[] = {\lk\sound\interior_turbolanceFar.ogg, db - 5, 1.0};
+		titles[] = {0, ""};
+	};
+	class shockwaveClose
+	{
+		name = "shockwave"; // Name for mission editor
+		sound[] = {\lk\sound\shockwave.ogg, db - 10, 0.4};
+		titles[] = {0, ""};
+	};
+	class shockwaveStandard
+	{
+		name = "shockwave"; // Name for mission editor
+		sound[] = {\lk\sound\shockwave.ogg, db - 15, 0.5};
+		titles[] = {0, ""};
+	};
+	class shockwaveFar
+	{
+		name = "shockwave"; // Name for mission editor
+		sound[] = {\lk\sound\shockwave.ogg, db - 20, 0.6};
+		titles[] = {0, ""};
+	};
+};
+
+
+// VAS INIT BEGIN --  ALSO TAW VIEWDISTANCE
+#include "taw_vd\dialog.hpp"       
+#include "VAS\menu.hpp"
+class CfgFunctions
+{
+	#include "VAS\cfgfunctions.hpp"
+	#include "taw_vd\CfgFunctions.hpp"
+	#include "ais_injury\cfgFunctionsAIS.hpp"
+	#include "EPD\EPDcfgFunctions.hpp"
+
+};
+
+// VAS INIT END --
+
+class RscTitles {
+
+	#include "ais_injury\dialogs\rscTitlesAIS.hpp"
+};

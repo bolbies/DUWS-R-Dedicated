@@ -1,0 +1,527 @@
+version=12;
+class Mission
+{
+	addOns[]=
+	{
+		"A3_Characters_F_OPFOR",
+		"A3_Characters_F_Civil",
+		"A3_Characters_F_INDEP",
+		"A3_Characters_F_BLUFOR",
+		"a3_characters_f_beta",
+		"a3_map_altis",
+		"A3_Modules_F_Supports",
+		"A3_Characters_F_Gamma",
+		"a3_uav_f_characters_f_gamma",
+		"a3_characters_f",
+		"A3_Modules_F",
+		"UCSV"
+	};
+	addOnsAuto[]=
+	{
+		"A3_Characters_F_OPFOR",
+		"a3_characters_f",
+		"A3_Characters_F_Civil",
+		"A3_Characters_F_INDEP",
+		"A3_Modules_F",
+		"A3_Characters_F_BLUFOR",
+		"A3_Characters_F_Gamma",
+		"UCSV",
+		"a3_map_altis"
+	};
+	randomSeed=16091530;
+	class Intel
+	{
+		briefingName="[SP/MP]Dynamic Universal War System Modified v1.3";
+		overviewText="Play a full, randomly generated campaign on whatever island you want to.";
+		startWeather=0;
+		startWind=0;
+		forecastWeather=0;
+		forecastWind=0;
+		forecastWaves=0;
+		wavesForced=1;
+		windForced=1;
+		year=2035;
+		month=8;
+		day=6;
+		hour=0;
+		minute=0;
+		startFogBase=0.001;
+		forecastFogBase=0.001;
+		startFogDecay=0.0049999999;
+		forecastFogDecay=0.0049999999;
+	};
+	class Groups
+	{
+		items=13;
+		class Item0
+		{
+			side="EAST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={41.243427,0,251.97107};
+					azimut=-104.97;
+					id=0;
+					side="EAST";
+					vehicle="O_Soldier_F";
+					leader=1;
+					skill=0.60000002;
+					init="removeallweapons this";
+				};
+			};
+		};
+		class Item1
+		{
+			side="CIV";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={35.804993,0,26.812012};
+					azimut=270;
+					id=1;
+					side="CIV";
+					vehicle="C_man_1";
+					leader=1;
+					skill=0.60000002;
+					init="removeallweapons this";
+				};
+			};
+		};
+		class Item2
+		{
+			side="GUER";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={37.437637,0,154.00293};
+					id=2;
+					side="GUER";
+					vehicle="I_Soldier_exp_F";
+					leader=1;
+					skill=0.60000002;
+					init="removeallweapons this";
+				};
+			};
+		};
+		class Item3
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={117.6598,0.16756104,103.34326};
+					azimut=270;
+					id=3;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+				};
+			};
+		};
+		class Item4
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={187.86356,0,1062.9159};
+					azimut=135;
+					id=4;
+					side="WEST";
+					vehicle="B_soldier_AT_F";
+					player="PLAYER COMMANDER";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.46666664;
+					text="player1";
+				};
+			};
+		};
+		class Item5
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					presenceCondition="isMultiplayer";
+					position[]={505.24139,0,1072.9504};
+					azimut=135;
+					id=5;
+					side="WEST";
+					vehicle="B_soldier_AT_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.60000002;
+					text="player2";
+				};
+			};
+		};
+		class Item6
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					presenceCondition="isMultiplayer";
+					position[]={183.33578,-0.11955103,903.83972};
+					azimut=135;
+					id=6;
+					side="WEST";
+					vehicle="B_soldier_repair_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.60000002;
+					text="player3";
+				};
+			};
+		};
+		class Item7
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					presenceCondition="isMultiplayer";
+					position[]={503.75793,0.21242723,906.80603};
+					azimut=135;
+					id=7;
+					side="WEST";
+					vehicle="B_soldier_repair_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.60000002;
+					text="player4";
+				};
+			};
+		};
+		class Item8
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					presenceCondition="isMultiplayer";
+					position[]={186.30258,0.05789116,779.23279};
+					azimut=135;
+					id=8;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.60000002;
+					text="player5";
+				};
+			};
+		};
+		class Item9
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					presenceCondition="isMultiplayer";
+					position[]={502.27435,-0.033683583,774.77966};
+					azimut=135;
+					id=9;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.60000002;
+					text="player6";
+				};
+			};
+		};
+		class Item10
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					presenceCondition="isMultiplayer";
+					position[]={178.88544,0.019906089,657.59033};
+					azimut=135;
+					id=10;
+					side="WEST";
+					vehicle="B_soldier_AA_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.60000002;
+					text="player7";
+				};
+			};
+		};
+		class Item11
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=5;
+				class Item0
+				{
+					presenceCondition="isMultiplayer";
+					position[]={491.89044,-0.0045730919,666.49109};
+					azimut=135;
+					id=11;
+					side="WEST";
+					vehicle="B_soldier_AT_F";
+					player="PLAY CDG";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.60000002;
+					text="player8";
+					description="MISSILE SPECIALIST (AT), GROUP LEADER OPEN JOIN";
+				};
+				class Item1
+				{
+					presenceCondition="isMultiplayer";
+					position[]={663.43341,0,537.24976};
+					azimut=135;
+					id=12;
+					side="WEST";
+					vehicle="B_engineer_F";
+					player="PLAY CDG";
+					skill=0.60000002;
+					text="player9";
+					description="Engineer - select to join this group's leader (DO NOT RECRUIT AI IN-GAME)";
+				};
+				class Item2
+				{
+					presenceCondition="isMultiplayer";
+					position[]={809.79004,0,513.43872};
+					azimut=135;
+					id=13;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					skill=0.60000002;
+					text="player10";
+					description="Medic - select to join this group's leader (DO NOT RECRUIT AI IN-GAME)";
+				};
+				class Item3
+				{
+					presenceCondition="isMultiplayer";
+					position[]={965.0769,0,475.30518};
+					azimut=135;
+					id=14;
+					side="WEST";
+					vehicle="B_soldier_AA_F";
+					player="PLAY CDG";
+					skill=0.60000002;
+					text="player11";
+					description="AA Specialist - select to join this group's leader (DO NOT RECRUIT AI IN-GAME)";
+				};
+				class Item4
+				{
+					presenceCondition="isMultiplayer";
+					position[]={1128.0192,0,422.07642};
+					azimut=135;
+					id=15;
+					side="WEST";
+					vehicle="B_soldier_UAV_F";
+					player="PLAY CDG";
+					skill=0.60000002;
+					text="player12";
+					description="UAV Operator - select to join this group's leader (DO NOT RECRUIT AI IN-GAME)";
+				};
+			};
+		};
+		class Item12
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={14647.728,-43.831306,15148.471};
+					placement=100000;
+					class args
+					{
+						items=6;
+						class Item0
+						{
+							value="1";
+							parentCls="UCSV_Module_Lifting";
+							typeName="allowCrew";
+						};
+						class Item1
+						{
+							value="1";
+							parentCls="UCSV_Module_Lifting";
+							typeName="parachuteEnabled";
+						};
+						class Item2
+						{
+							value="NONE";
+							parentCls="UCSV_Module_Lifting";
+							typeName="markerType";
+						};
+						class Item3
+						{
+							value="[[""O_MRAP_02_hmg_F"",[3,3,3]],[""B_MRAP_01_hmg_F"",[3,3,3]],[""B_MRAP_01_gmg_F"",[3,3,3]],[""B_APC_Wheeled_01_cannon_F"",[3,3,3]],[""B_APC_Tracked_01_rcws_F"",[3,3,3]],[""B_Quadbike_01_F"",[3,3,3]],[""B_APC_Tracked_01_AA_F"",[3,3,3]],[""B_MBT_01_cannon_F"",[3,3,3]],[""B_APC_Tracked_01_CRV_F"",[3,3,3]],[""C_Offroad_01_F"",[3,3,3]],[""B_MBT_01_mlrs_F"",[3,3,3]],[""B_MBT_01_arty_F"",[3,3,3]],[""B_G_Van_01_fuel_F"",[3,3,3]],[""B_MBT_01_TUSK_F"",[3,3,3]],[""B_UGV_01_rcws_F"",[3,3,3]],[""B_UGV_01_F"",[3,3,3]]]";
+							parentCls="UCSV_Module_Lifting";
+							typeName="whiteList";
+						};
+						class Item4
+						{
+							value="";
+							parentCls="UCSV_Module_Lifting";
+							typeName="blackList";
+						};
+						class Item5
+						{
+							value="75";
+							parentCls="UCSV_Module_Lifting";
+							typeName="parachuteDeployHeight";
+						};
+					};
+					id=17;
+					side="LOGIC";
+					vehicle="UCSV_Module_Lifting";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+				};
+			};
+		};
+	};
+	class Markers
+	{
+		items=1;
+		class Item0
+		{
+			position[]={91.06839,0.14840496,23.99707};
+			name="respawn_west";
+			type="Empty";
+		};
+	};
+};
+class Intro
+{
+	addOns[]=
+	{
+		"a3_map_stratis",
+		"a3_map_altis"
+	};
+	addOnsAuto[]=
+	{
+		"a3_map_altis"
+	};
+	randomSeed=14680970;
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=7;
+		day=6;
+		hour=14;
+		minute=15;
+		startFogBase=0.001;
+		forecastFogBase=0.001;
+		startFogDecay=0.0049999999;
+		forecastFogDecay=0.0049999999;
+	};
+};
+class OutroWin
+{
+	addOns[]=
+	{
+		"a3_map_stratis",
+		"a3_map_altis"
+	};
+	addOnsAuto[]=
+	{
+		"a3_map_altis"
+	};
+	randomSeed=13195057;
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=7;
+		day=6;
+		hour=14;
+		minute=15;
+		startFogBase=0.001;
+		forecastFogBase=0.001;
+		startFogDecay=0.0049999999;
+		forecastFogDecay=0.0049999999;
+	};
+};
+class OutroLoose
+{
+	addOns[]=
+	{
+		"a3_map_stratis",
+		"a3_map_altis"
+	};
+	addOnsAuto[]=
+	{
+		"a3_map_altis"
+	};
+	randomSeed=16171346;
+	class Intel
+	{
+		timeOfChanges=1800.0002;
+		startWeather=0.30000001;
+		startWind=0.1;
+		startWaves=0.1;
+		forecastWeather=0.30000001;
+		forecastWind=0.1;
+		forecastWaves=0.1;
+		forecastLightnings=0.1;
+		year=2035;
+		month=7;
+		day=6;
+		hour=14;
+		minute=15;
+		startFogBase=0.001;
+		forecastFogBase=0.001;
+		startFogDecay=0.0049999999;
+		forecastFogDecay=0.0049999999;
+	};
+};
