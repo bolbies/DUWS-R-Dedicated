@@ -1,11 +1,11 @@
-_unit = _this select 0;
-_debug = _this select 1;
-
+//_unit = _this select 0;
+//_debug = _this select 1;
+sleep 3;
 private ["_grid_size"];
 disableserialization;
 
 openMap [true, false];
-WaitUntil {visibleMap};
+waitUntil {(visiblemap)};
 
 x_mapsize = 0;
 y_mapsize = 0;
@@ -20,7 +20,6 @@ _zoom_max = ctrlMapScale _map_cntrl;
 _limit = _map_cntrl ctrlMapScreenToWorld [0.5, 0.5];
 x_mapsize = _limit select 0;
 y_mapsize = _limit select 1;
-
 
 _Map_display = findDisplay 12;
 _map_cntrl = _Map_display displayCtrl 51;

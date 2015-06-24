@@ -14,7 +14,6 @@ class Mission
 		"a3_uav_f_characters_f_gamma",
 		"a3_characters_f",
 		"A3_Modules_F",
-		"UCSV"
 	};
 	addOnsAuto[]=
 	{
@@ -25,7 +24,6 @@ class Mission
 		"A3_Modules_F",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_Gamma",
-		"UCSV",
 		"a3_map_altis"
 	};
 	randomSeed=16091530;
@@ -52,7 +50,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=13;
+		items=12;
 		class Item0
 		{
 			side="EAST";
@@ -352,65 +350,6 @@ class Mission
 					skill=0.60000002;
 					text="player12";
 					description="UAV Operator - select to join this group's leader (DO NOT RECRUIT AI IN-GAME)";
-				};
-			};
-		};
-		class Item12
-		{
-			side="LOGIC";
-			class Vehicles
-			{
-				items=1;
-				class Item0
-				{
-					position[]={14647.728,-43.831306,15148.471};
-					placement=100000;
-					class args
-					{
-						items=6;
-						class Item0
-						{
-							value="1";
-							parentCls="UCSV_Module_Lifting";
-							typeName="allowCrew";
-						};
-						class Item1
-						{
-							value="1";
-							parentCls="UCSV_Module_Lifting";
-							typeName="parachuteEnabled";
-						};
-						class Item2
-						{
-							value="NONE";
-							parentCls="UCSV_Module_Lifting";
-							typeName="markerType";
-						};
-						class Item3
-						{
-							value="[[""O_MRAP_02_hmg_F"",[3,3,3]],[""B_MRAP_01_hmg_F"",[3,3,3]],[""B_MRAP_01_gmg_F"",[3,3,3]],[""B_APC_Wheeled_01_cannon_F"",[3,3,3]],[""B_APC_Tracked_01_rcws_F"",[3,3,3]],[""B_Quadbike_01_F"",[3,3,3]],[""B_APC_Tracked_01_AA_F"",[3,3,3]],[""B_MBT_01_cannon_F"",[3,3,3]],[""B_APC_Tracked_01_CRV_F"",[3,3,3]],[""C_Offroad_01_F"",[3,3,3]],[""B_MBT_01_mlrs_F"",[3,3,3]],[""B_MBT_01_arty_F"",[3,3,3]],[""B_G_Van_01_fuel_F"",[3,3,3]],[""B_MBT_01_TUSK_F"",[3,3,3]],[""B_UGV_01_rcws_F"",[3,3,3]],[""B_UGV_01_F"",[3,3,3]]]";
-							parentCls="UCSV_Module_Lifting";
-							typeName="whiteList";
-						};
-						class Item4
-						{
-							value="";
-							parentCls="UCSV_Module_Lifting";
-							typeName="blackList";
-						};
-						class Item5
-						{
-							value="75";
-							parentCls="UCSV_Module_Lifting";
-							typeName="parachuteDeployHeight";
-						};
-					};
-					id=17;
-					side="LOGIC";
-					vehicle="UCSV_Module_Lifting";
-					leader=1;
-					lock="UNLOCKED";
-					skill=0.60000002;
 				};
 			};
 		};

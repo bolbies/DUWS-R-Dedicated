@@ -1,12 +1,16 @@
 // _center = createCenter sideLogic;   un center existe déjà
-
+sleep 5;
+hint "hcinit is working";
 // create && synchronize HC
 _grplogic = createGroup sideLogic;
 _hc_module = _grplogic createUnit ["HighCommand",[0,0,0] , [], 0, ""];
-_hc_module synchronizeObjectsAdd [player];
+_hc_module synchronizeObjectsAdd [game_master];
 // done,
 
 // make 1 HC subordinate so that the player will not control all blufor forces
 _grplogic = createGroup sideLogic;
 _sub_module = _grplogic createUnit ["HighCommandsubordinate",[0,0,0] , [], 0, ""];                    
 _sub_module synchronizeObjectsAdd [_hc_module];
+sleep 5;
+hint str(synchronizedobjects player);
+//diag_log "synced objects above";

@@ -33,9 +33,11 @@ _tower setVectorUp [0,0,1];
 
 
 // TASK AND NOTIFICATION
-_taskhandle = player createSimpleTask ["taskDestroy"];
-_taskhandle setSimpleTaskDescription ["We have detected a large amount of enemy trasmissions coming from this area. This is probably caused by a radio tower used by the enemy forces on the island. Destroy the tower. Be sure to take some satchels, which you can find in the armory. Armory can be unlocked at the HQ.",_mission_name,""];
-_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+//_taskhandle = player createSimpleTask ["taskDestroy"];
+//_taskhandle setSimpleTaskDescription ["We have detected a large amount of enemy trasmissions coming from this area. This is probably caused by a radio tower used by the enemy forces on the island. Destroy the tower. Be sure to take some satchels, which you can find in the armory. Armory can be unlocked at the HQ.",_mission_name,""];
+//_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+
+[west, "_taskhandle", ["taskDestroy.", "We have detected a large amount of enemy trasmissions coming from this area. This is probably caused by a radio tower used by the enemy forces on the island. Destroy the tower. Be sure to take some satchels, which you can find in the armory. Armory can be unlocked at the HQ.", "(getMarkerPos str(_markername)"], objNull, true] call BIS_fnc_taskCreate; 
 
 ["TaskAssigned",["",_mission_name]] call bis_fnc_showNotification;
 
@@ -58,7 +60,9 @@ waitUntil {sleep 1; !alive _tower};
 deleteMarker str(_markername2);
 deleteMarker str(_markername);
 
-player removeSimpleTask _taskhandle;
+//player removeSimpleTask _taskhandle;
+
+[["_taskhandle", "WEST"],"BIS_fnc_deleteTask", true, true] call BIS_fnc_MP; 
  
 // Give cookies  (bonus & notifications)
 [_cpreward, _apreward] execvm "missions\mission_reward.sqf";

@@ -49,9 +49,11 @@ _mtv1 Call Compile Format ["%1=_This ; PublicVariable ""%1""",_VarName];
 
 
 // TASK AND NOTIFICATION
-_taskhandle = player createSimpleTask ["taskRecover"];
-_taskhandle setSimpleTaskDescription ["RECOVER THE MTV<br/>Mobile Teleport Vehicle<br/><br/>An enemy AAF Strider secretly used for teleportation has been reported in the area. Find it, and bring it back to the base to earn a new teleporting option for your team.",_mission_name,""];
-_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+//_taskhandle = player createSimpleTask ["taskRecover"];
+//_taskhandle setSimpleTaskDescription ["RECOVER THE MTV<br/>Mobile Teleport Vehicle<br/><br/>An enemy AAF Strider secretly used for teleportation has been reported in the area. Find it, and bring it back to the base to earn a new teleporting option for your team.",_mission_name,""];
+//_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+
+[west, "_taskhandle", ["taskDestroy.", "RECOVER THE MTV<br/>Mobile Teleport Vehicle<br/><br/>An enemy AAF Strider secretly used for teleportation has been reported in the area. Find it, and bring it back to the base to earn a new teleporting option for your team.", "(getMarkerPos str(_markername)"], objNull, true] call BIS_fnc_taskCreate; 
 
 ["TaskAssigned",["",_mission_name]] call bis_fnc_showNotification;
 [[{hint"**New Side Mission Loaded**\n\ncheck your map!"}],"BIS_fnc_Spawn",true] call BIS_fnc_MP;
@@ -79,7 +81,9 @@ waitUntil {sleep 2; ((getdammage MTV1)>0.95 OR (MTV1 distance _initpos)<50)};
 deleteMarker str(_markername2);
 deleteMarker str(_markername);
 
-player removeSimpleTask _taskhandle;
+//player removeSimpleTask _taskhandle;
+
+[["_taskhandle", "WEST"],"BIS_fnc_deleteTask", true, true] call BIS_fnc_MP; 
 
 if (getdammage MTV1>0.95) exitWith
 {

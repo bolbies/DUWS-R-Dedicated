@@ -33,9 +33,12 @@ str(_markername2) setMarkerAlpha 0.3;
 
 
 // TASK AND NOTIFICATION
-_taskhandle = player createSimpleTask ["taskFindcode"];
-_taskhandle setSimpleTaskDescription ["DO or DIE!<br/>You Must Save Your Commanding Officer.<br/><br/>You must go to the AO marked on your map and locate the briefcase which contains the secret defuse code, then make it back to HQ within 30 minutes so you can disarm the bomb that is attached to the officer.<br/><br/>If you are successful you will earn 250 spendable CP, if you are not successful it's Mission Over and you lose at DUWS!",_mission_name,""];
-_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+//_taskhandle = player createSimpleTask ["taskFindcode"];
+//_taskhandle setSimpleTaskDescription ["DO or DIE!<br/>You Must Save Your Commanding Officer.<br/><br/>You must go to the AO marked on your map and locate the briefcase which contains the secret defuse code, then make it back to HQ within 30 minutes so you can disarm the bomb that is attached to the officer.<br/><br/>If you are successful you will earn 250 spendable CP, if you are not successful it's Mission Over and you lose at DUWS!",_mission_name,""];
+//_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+
+[west, "_taskhandle", ["taskFindcode.", "DO or DIE!<br/>You Must Save Your Commanding Officer.<br/><br/>You must go to the AO marked on your map and locate the briefcase which contains the secret defuse code, then make it back to HQ within 30 minutes so you can disarm the bomb that is attached to the officer.<br/><br/>If you are successful you will earn 250 spendable CP, if you are not successful it's Mission Over and you lose at DUWS!", "(getMarkerPos str(_markername)"], objNull, true] call BIS_fnc_taskCreate; 
+
 ["TaskAssigned",["",_mission_name]] call bis_fnc_showNotification;
 [[{hint"**New Side Mission Loaded**\n\ncheck your map!"}],"BIS_fnc_Spawn",true] call BIS_fnc_MP;
 
@@ -95,7 +98,9 @@ sleep 2;
 deleteVehicle BOMBCODE1;
 deleteMarker str(_markername2);
 deleteMarker str(_markername);
-player removeSimpleTask _taskhandle;  	
+//player removeSimpleTask _taskhandle;  	
+
+[["_taskhandle", "WEST"],"BIS_fnc_deleteTask", true, true] call BIS_fnc_MP; 
 };
 
 // IF MISSION FAILS, BUT OFFICER SURVIVES////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +115,9 @@ sleep 2;
 deleteVehicle BOMBCODE1;
 deleteMarker str(_markername2);
 deleteMarker str(_markername);
-player removeSimpleTask _taskhandle;  	
+//player removeSimpleTask _taskhandle;  	
+
+[["_taskhandle", "WEST"],"BIS_fnc_deleteTask", true, true] call BIS_fnc_MP; 
 };
 
 // IF MISSION SUCCESSFUL////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -125,7 +132,10 @@ deleteVehicle BOMBCODE1;
 hq_blu1 switchMove "acts_StandingSpeakingUnarmed";
 deleteMarker str(_markername2);
 deleteMarker str(_markername);
-player removeSimpleTask _taskhandle;
+//player removeSimpleTask _taskhandle;
+
+[["_taskhandle", "WEST"],"BIS_fnc_deleteTask", true, true] call BIS_fnc_MP; 
+
 sleep 1;
 _addmission = [] execVM "persistent\persistent_stats_missions_total.sqf";
 [[{hint"**Side Mission**\n\nSuccessfuly Completed!\n\n250 COMMAND POINTS AWARDED!!"}],"BIS_fnc_Spawn",true] call BIS_fnc_MP;

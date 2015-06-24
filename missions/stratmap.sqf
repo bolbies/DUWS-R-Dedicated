@@ -4,7 +4,7 @@ _counter = 0;
 
 if (isnil ("Mission_timeout_request")) then {Mission_timeout_request = true;};
 if (!Mission_timeout_request) exitWith {PAPABEAR=[West,"HQ"]; PAPABEAR SideChat "We don't have any other missions for you right now, try again in 10 minutes";};
-if (!isServer) exitWith {hint "Only the host can request side missions for now"};
+if (!((getPlayerUID player) in ["76561198100837420"])) exitWith {hint "Only the host can request side missions for now"};
 if (officedead) exitWith {hint "Your commanding officer is dead, so there are no side-missions allowed!"};
 
 startLoadingScreen ["Loading zones..."];

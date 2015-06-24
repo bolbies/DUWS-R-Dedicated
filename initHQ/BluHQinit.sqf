@@ -1,7 +1,6 @@
 _hqblu = _this select 0;
 blu_hq_created = true;
 
-
 PosOfBLUHQ = _hqblu;
 publicVariable "PosOfBLUHQ";
 
@@ -104,8 +103,7 @@ sleep 0.1;
 HQ_pos_found_generated = true;
 publicVariable "HQ_pos_found_generated";
 
-
-if (!zones_manually_placed) then {
+//if (!zones_manually_placed) then {
 
 
 // SHOW THE STARTUP MENU
@@ -122,16 +120,15 @@ _weather_script = [] execVM "dialog\startup\weather.sqf";
 };
 
 // CALL ZONES GENERATION
-waitUntil {!isNil {getsize_script}};  // WAIT UNTIL THE MAPSIZE SCRIPT IS DONE
-
-
+//waitUntil {!isNil {getsize_script}};  // WAIT UNTIL THE MAPSIZE SCRIPT IS DONE
 if (!zones_created && !manually_chosen) then {      // CHECK IF ZONES ARE PLACED, IF NOT EXECUTE locatorZonesV1.sqf
-_zones_create = [50, 0.2] execVM "initZones\locatorZonesV1.sqf";   // CHECK IF ZONES HAVE ALREADY BEEN PLACED
-} else {
-_zones_create = [50, 0.2] execVM "initZones\locatorZonesV2.sqf";
+        _zones_create = [50, 0.2] execVM "initZones\locatorZonesV1.sqf";   // CHECK IF ZONES HAVE ALREADY BEEN PLACED
+    } else {
+        sleep 3;
+        _zones_create = [50, 0.2] execVM "initZones\locatorZonesV2.sqf";
+    };
 };
 
-};
 player allowDamage true;
 if (debugmode) exitWith {};
 

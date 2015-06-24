@@ -7,7 +7,7 @@
 // call the fnc with a periodic while loop or in any script that creates an east unit
 //
 ///////////////////////////////////////////////////
-if (isServer or isDedicated) then {
+//if (isServer or isDedicated) then {
 	cp_ehkilledeast = {
 	
 	east_units = [];
@@ -22,4 +22,5 @@ if (isServer or isDedicated) then {
 
 		{_x addEventHandler ["killed", {commandpointsblu1 = commandpointsblu1 + 0.5; publicVariable "commandpointsblu1"}]} forEach east_units; 
 	};
-};
+    publicvariable "cp_ehkilledeast";
+//};

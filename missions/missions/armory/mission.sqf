@@ -49,9 +49,11 @@ _arm1 Call Compile Format ["%1=_This ; PublicVariable ""%1""",_VarName];
 
 
 // TASK AND NOTIFICATION
-_taskhandle = player createSimpleTask ["taskRecover"];
-_taskhandle setSimpleTaskDescription ["RECOVER THE ARM<br/>Mobile Armory<br/><br/>An enemy Zamak blahblahblah.",_mission_name,""];
-_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+//_taskhandle = player createSimpleTask ["taskRecover"];
+//_taskhandle setSimpleTaskDescription ["RECOVER THE ARM<br/>Mobile Armory<br/><br/>An enemy Zamak blahblahblah.",_mission_name,""];
+//_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+
+[west, "_taskhandle", ["taskRecover.", "RECOVER THE ARM<br/>Mobile Armory<br/><br/>An enemy Zamak blahblahblah.", "(getMarkerPos str(_markername)"], objNull, true] call BIS_fnc_taskCreate; 
 
 ["TaskAssigned",["",_mission_name]] call bis_fnc_showNotification;
 [[{hint"**New Side Mission Loaded**\n\ncheck your map!"}],"BIS_fnc_Spawn",true] call BIS_fnc_MP;
@@ -79,7 +81,9 @@ waitUntil {sleep 2; ((getdammage ARM1)>0.95 OR (ARM1 distance _initpos)<50)};
 deleteMarker str(_markername2);
 deleteMarker str(_markername);
 
-player removeSimpleTask _taskhandle;
+//player removeSimpleTask _taskhandle;
+
+[["_taskhandle", "WEST"],"BIS_fnc_deleteTask", true, true] call BIS_fnc_MP; 
 
 if (getdammage ARM1>0.95) exitWith
 {

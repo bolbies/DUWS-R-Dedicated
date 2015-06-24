@@ -17,7 +17,9 @@ call compile format["_taskhandle = %1",_VARtaskgeneratedName]; // recall variabl
 
 _object removeAction _action;
 
-player removeSimpleTask _taskhandle;
+//player removeSimpleTask _taskhandle;
+
+[["_taskhandle", "WEST"],"BIS_fnc_deleteTask", true, true] call BIS_fnc_MP; 
 
 
 deleteMarker str(_markername2);

@@ -44,9 +44,12 @@ str(_markername2) setMarkerAlpha 0.3;
 
 
 // TASK AND NOTIFICATION
-_taskhandle = player createSimpleTask ["taskDefuse"];
-_taskhandle setSimpleTaskDescription ["DEFUSE THE GORGON<br/>Get a Gorgon and 200 spendable CP or risk losing it all!<br/><br/>You must locate the defuse code on one of the enemy patrol units in the AO, then locate and safely defuse the armored Gorgon vehicle which is set to explode in 30 minutes. If you succeed your reward will earn you an extra 200 spendable Command Points and you get to keep the Gorgon, but if you fail all of your current Command Points will be taken away!<br/><br/>...well, you'll get to keep 2cp for a ride home and a Sitrep",_mission_name,""];
-_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+//_taskhandle = player createSimpleTask ["taskDefuse"];
+//_taskhandle setSimpleTaskDescription ["DEFUSE THE GORGON<br/>Get a Gorgon and 200 spendable CP or risk losing it all!<br/><br/>You must locate the defuse code on one of the enemy patrol units in the AO, then locate and safely defuse the armored Gorgon vehicle which is set to explode in 30 minutes. If you succeed your reward will earn you an extra 200 spendable Command Points and you get to keep the Gorgon, but if you fail all of your current Command Points will be taken away!<br/><br/>...well, you'll get to keep 2cp for a ride home and a Sitrep",_mission_name,""];
+//_taskhandle setSimpleTaskDestination (getMarkerPos str(_markername));
+
+[west, "_taskhandle", ["taskDestroy.", "DEFUSE THE GORGON<br/>Get a Gorgon and 200 spendable CP or risk losing it all!<br/><br/>You must locate the defuse code on one of the enemy patrol units in the AO, then locate and safely defuse the armored Gorgon vehicle which is set to explode in 30 minutes. If you succeed your reward will earn you an extra 200 spendable Command Points and you get to keep the Gorgon, but if you fail all of your current Command Points will be taken away!<br/><br/>...well, you'll get to keep 2cp for a ride home and a Sitrep", "(getMarkerPos str(_markername)"], objNull, true] call BIS_fnc_taskCreate; 
+
 [["TaskAssigned",["",_mission_name]],"bis_fnc_showNotification"] call BIS_fnc_MP;
 [[{hint"**New Side Mission Loaded**\n\ncheck your map!"}],"BIS_fnc_Spawn",true] call BIS_fnc_MP;
 
@@ -113,7 +116,10 @@ sleep 2;
 deleteVehicle BOMBCODE1;
 deleteMarker str(_markername2);
 deleteMarker str(_markername);
-player removeSimpleTask _taskhandle;  	
+
+//player removeSimpleTask _taskhandle;
+
+[["_taskhandle", "WEST"],"BIS_fnc_deleteTask", true, true] call BIS_fnc_MP; 
 };
 
 // IF MISSION SUCCESSFUL////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -129,7 +135,11 @@ removeAllActions GORGON1;
 GORGON1 lock false;
 deleteMarker str(_markername2);
 deleteMarker str(_markername);
-player removeSimpleTask _taskhandle;
+
+//player removeSimpleTask _taskhandle;
+
+[["_taskhandle", "WEST"],"BIS_fnc_deleteTask", true, true] call BIS_fnc_MP; 
+
 sleep 1;
 _addmission = [] execVM "persistent\persistent_stats_missions_total.sqf";
 [[{hint"**Side Mission**\n\nSuccessfuly Completed!\n\n200 COMMAND POINTS AWARDED!!"}],"BIS_fnc_Spawn",true,false] call BIS_fnc_MP;

@@ -196,7 +196,7 @@ taxi = {
     _s2 assignascargo helo;
     {doGetOut _x; sleep 1;} forEach assignedCargo helo; //units group player;
 
-    sleep 40;
+    sleep 60;
     deleteMarker str(markerpickup);
     
     pilot sideChat format["This is %1 %2-%3, we are RTB",_fobname,_random1,_random2];

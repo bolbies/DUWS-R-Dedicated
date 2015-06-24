@@ -125,7 +125,7 @@ if (_unit isKindOf "Nonstrategic") then {_coef = 5;};
 _rad = _unit distance _pos;
 
 // -- Sound of Vehicle shaking after Explosion
-if ((isPlayer _unit) or (player in _unit) and ((_unit distance _pos) < ((ln(_kT)+1) * 4500))) then
+/*if ((isPlayer _unit) or (player in _unit) and ((_unit distance _pos) < ((ln(_kT)+1) * 4500))) then
 {
 	if (_coef != 180) then
 	{
@@ -135,7 +135,7 @@ if ((isPlayer _unit) or (player in _unit) and ((_unit distance _pos) < ((ln(_kT)
 		_SoundTurbolence = "interiorTurbolance"+_intenzity;
 		playmusic _SoundTurbolence;
 	};
-};
+};*/
 
 _soundPos = "Land_HelipadEmpty_F" createVehicle _pos;
 
@@ -168,7 +168,7 @@ if (vehicle _unit == _unit and !_shockWavePassed) then
 	} forEach _crewInside;
 
 	// Sound of HeatWave impact to a unit or vehicle
-	if ((isPlayer _unit) or (player in _unit) and ((_unit distance _pos) < ((ln(_kT)+1) * 4500)) and (heatWaveSpreadDistance < heatDistance)) then
+	/*if ((isPlayer _unit) or (player in _unit) and ((_unit distance _pos) < ((ln(_kT)+1) * 4500)) and (heatWaveSpreadDistance < heatDistance)) then
 		{
 		if (_coef == 180) then {_material = "Body";} else {_material = "Metal";};
 		if ((player distance _pos) < ((ln(_kT)+1) * 800)) then {_intenzity = "Close";};
@@ -176,7 +176,7 @@ if (vehicle _unit == _unit and !_shockWavePassed) then
 		if (((player distance _pos) >= ((ln(_kT)+1) * 2000)) and (player distance _pos) < ((ln(_kT)+1) * 4500)) then {_intenzity = "Far";};
 		_Sound = "impact"+_material+"Soft"+_intenzity;
 		if (player distance _pos < ((ln(_kT)+1) * 4500)) then { playmusic _Sound;};
-		};
+		};*/
 
 	// -- Damage applied by a HeatWave to a unit or vehicles body and its weak parts
 	if (heatWaveSpreadDistance < heatDistance) then
@@ -198,13 +198,13 @@ if (_xPos < 0 and _yPos < 0) then {_fi = 180 + atan (abs(_yPos / _xPos));};
 if (_xPos < 0 and _yPos >= 0) then {_fi = 90 + atan (abs(_xPos / _yPos));};
 _xSpos = shockWaveSpreadDistance * cos (_fi); _ySpos = shockWaveSpreadDistance * sin (_fi);
 _soundPos setPos [((_pos select 0)+_xSPos),((_pos select 1)+_ySPos),(_pos select 2)];
-if (_unit distance _soundPos < ln(10000 - shockWaveSpreadDistance)*21) then {
+/*if (_unit distance _soundPos < ln(10000 - shockWaveSpreadDistance)*21) then {
 if (player distance _pos < ((ln(_kT)+1) * 800)) then {_intenzity = "Close";};
 if (player distance _pos >= ((ln(_kT)+1) * 800) and player distance _pos < ((ln(_kT)+1) * 2000)) then {_intenzity = "Standard";};
 if (player distance _pos >= ((ln(_kT)+1) * 2000) and player distance _pos < ((ln(_kT)+1) * 4500)) then {_intenzity = "Far";};
 _SoundWave = "shockwave"+_intenzity;
 if (player distance _pos < ((ln(_kT)+1) * 4500)) then { playmusic _SoundWave; playmusic "rhumble";};
-};
+};*/
 sleep 0.2;
 };
 if (vehicle _unit == _unit and !_shockWavePassed) then
@@ -221,16 +221,16 @@ if (vehicle _unit == _unit and !_shockWavePassed) then
 	} forEach _crewInside;
 	
 // -- Sound of ShockWave impact to a unit or vehicle
-if ((isPlayer _unit) or (player in _unit)and(_unit distance _pos < ((ln(_kT)+1) * 4500))and(shockWaveSpreadDistance < shockDistance)) then {
+/*if ((isPlayer _unit) or (player in _unit)and(_unit distance _pos < ((ln(_kT)+1) * 4500))and(shockWaveSpreadDistance < shockDistance)) then {
 if (player distance _pos < ((ln(_kT)+1) * 800)) then {_intenzity = "Close";};
 if (player distance _pos >= ((ln(_kT)+1) * 800) and player distance _pos < ((ln(_kT)+1) * 2000)) then {_intenzity = "Standard";};
 if (player distance _pos >= ((ln(_kT)+1) * 2000) and player distance _pos < ((ln(_kT)+1) * 4500)) then {_intenzity = "Far";};
 _Sound = "impact"+_material+"Hard"+_intenzity;
 if (player distance _pos < ((ln(_kT)+1) * 4500)) then { playmusic _Sound;};
 deleteVehicle _soundPos;
-};
+};*/
 
-[_pos,_kT] spawn StaticPreLoad;
+//[_pos,_kT] spawn StaticPreLoad;
 
 // -- Final Declaration of Shockwave impact into a car
 if (shockWaveSpreadDistance < shockDistance) then

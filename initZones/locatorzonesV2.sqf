@@ -5,7 +5,6 @@ _diff = _this select 1;
 [[{player globalChat "DO NOT USE ACTION MENU UNTIL MISSION INITIALIZATION IS COMPLETE"}],"BIS_fnc_Spawn",true,false] call BIS_fnc_MP;
 [[{hint "DO NOT USE ACTION MENU UNTIL MISSION INITIALIZATION IS COMPLETE"}],"BIS_fnc_Spawn",true,false] call BIS_fnc_MP;
 
-
 // ON WATER ? >> FLAT ? >> DISTANCE BETWEEN ZONES ? >> OK !
 
 _worldName = getText(configFile >> "cfgWorlds" >> worldName >> "description");
@@ -14,9 +13,10 @@ _fortified = false;
 openMap [true, true]; 
 hint "Click somewhere on the island to place enemy zones";
 _zones_array = [[-9999,-9999,-9999]];
+
 for [{_i=1}, {_i<=zones_number}, {_i=_i+1}] do  // BEGIN "FOR" LOOP --
 {
-	player globalChat format["Choose location for zone #%1...",_i];
+    player globalChat format["Choose location for zone #%1...",_i];
 	_found = false;
 	_zone_radius = 0;
 	_points_zone = 0;
@@ -80,6 +80,9 @@ sleep 9;
 _zones_array = [_zones_array, 0] call BIS_fnc_removeIndex;
 
 //player globalchat format["%1",_zones_array];
+serv_zones_array = [] + _zones_array;
+publicVariable "serv_zones_array";
+
 _warcom_init = [_zones_array, getpos hq_blu1, [0,0,0], blufor_ap, opfor_ap, 2700,blufor_ai_skill,opfor_ai_skill, 2000] execVM "WARCOM\WARCOM_init.sqf"; // 2700 is 40 mins
 waitUntil {scriptDone _warcom_init};
 sleep 0.1;
