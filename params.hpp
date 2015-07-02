@@ -3,7 +3,7 @@ class Params {
 		title = "Revive";
 		values[] = {0,1,2};
 		texts[] = {"REVIVE OFF","REVIVE ON (Only Humans Can Revive)","REVIVE ON (Humans + AI Can Revive)"};
-		default = 0;
+		default = 2;
 	};
 	class DeatPenalty {
 		title = "CP death penalty";
